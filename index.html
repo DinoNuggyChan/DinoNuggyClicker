@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Dino Nuggy Clicker a random game made by: DinoNuggyChan (github)" />
+    <meta property="og:image" content="https://media.discordapp.net/attachments/816905273322766369/869420655748218920/logo.gif?width=325&height=325">
+    <meta property="twitter:image" content="https://media.discordapp.net/attachments/816905273322766369/869420655748218920/logo.gif?width=325&height=325">
+    <meta name="author" content="Basic javascript game"/>
+    <link rel="icon" type="./img/croppedlogo.png" href="./img/croppedlogo.png" style="border-radius: 50%;">
+    <link rel="stylesheet" href="index.css">
+</head>
+<style>
+body {
+  background-image: url('https://dinonuggyclicker.nuggetchan.repl.co/img/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+
+<script>
+  function update(){
+        document.getElementById('text').value = DinoNuggyCount;
+        document.title = DinoNuggyCount + " Dino Nuggy Game";
+        document.getElementById('amountAutoClick').innerHTML = "You Own " + autoClick + " Auto Clickers";
+        document.getElementById('costAutoClick').innerHTML = ((autoClick+1) * 12) + " Dino Nuggys"
+  }
+
+  var DinoNuggyCount = 0;
+  var autoClick = 0
+
+  function timer(){
+    DinoNuggyCount = DinoNuggyCount + autoClick;
+    update()
+  }
+  setInterval(timer, 1000)
+  </script>
+
+<html>
+  <head>
+    <title>Dino Nuggy Clicker: DinoNuggyChan</title>
+  </head>
+
+  <div class="container">
+
+      <img src="img/yes.jpg" alt="" style="width:500px;height:600px;"/>
+
+ <div class="centered">
+
+  <center>
+  <body>
+    <a href=# onclick="add()">
+      <img src="img/dinonuggy.jpeg" alt="Dino Nuggy" style="width:180px;height:190px;">
+      </a>
+    <br><br>
+    you got:
+    <input type="text" id="text" disabled style= text-align:center>
+    <script>
+      function add() {
+        DinoNuggyCount = DinoNuggyCount + 1
+        update()
+      }
+      </script>
+      Dino Nuggys Enjoy!!
+      <br><br>
+
+     <button> 
+       <a href="#" onClick="save()" style="text-decoration:none">Save</a>
+       </button>
+
+     <button> 
+       <a href="#" onClick="load()" style="text-decoration:none">Load</a>
+       </button>
+
+      <br><br>
+
+      <p>Buy 1 Auto Clicker</p>
+      <button>
+        <a href="#" onClick="buyAutoClick()">
+          <img src="img/cursor.png" alt="cursor" width="30px" height="40px">
+          </a>
+          </button>
+          <p id="costAutoClick">12 Dino Nuggys</p>
+          <p id="amountAutoClick">You own 0 Auto Clickers</p>
+  </body>
+  </style>
+  </div>
+  </div>
+  </center>
+      <script>
+      function save() {
+        localStorage.setItem("DinoNuggyCount", DinoNuggyCount)
+        localStorage.setItem("autoClick", autoClick)
+      }
+      function load() {
+        DinoNuggyCount = localStorage.getItem("DinoNuggyCount");
+        DinoNuggyCount = parseInt(DinoNuggyCount);
+        autoClick = localStorage.getItem("autoClick");
+        autoClick = parseInt(autoClick);
+        update()
+      }
+      function buyAutoClick(){
+        if (DinoNuggyCount >= (autoClick * 12)) {
+          DinoNuggyCount = DinoNuggyCount - ((autoClick+1) * 12)
+          autoClick = autoClick + 1;
+          update()
+        }
+      }
+      </script>
+
+</html>
